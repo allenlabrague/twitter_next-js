@@ -9,11 +9,18 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@nextui-org/react": "^1.0.0-beta.13",
     "autoprefixer": "10.4.14",
+    "framer-motion": "^10.12.18",
+    "moment": "^2.29.4",
+    "mongoose": "^7.3.4",
     "next": "13.4.9",
+    "next-auth": "^4.22.1",
     "postcss": "8.4.25",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-iconly": "^2.2.10",
+    "react-icons": "^4.10.1",
     "tailwindcss": "3.3.2"
   }
 }
