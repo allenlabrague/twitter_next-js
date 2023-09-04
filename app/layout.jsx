@@ -15,13 +15,10 @@ const RootLayout = ({ children }) => {
       <head>
         <link rel="icon" href="/favicon.png" sizes="any" />
       </head>
-      <body className="bg-black text-white overflow-hidden">
+      <body>
         <Provider>
-          <div className="flex">
-            <Navbar />
-            <main>{children}</main>
-            <RightNavbar />
-          </div>
+          <Navbar />
+          {/* <main>{children}</main> */}
         </Provider>
       </body>
     </html>
