@@ -4,12 +4,14 @@ import { useState, useEffect } from "react";
 import Feed from "@components/Feed";
 import Image from "next/image";
 import CreateTweet from "./create-tweet/page";
+import { useTheme } from "next-themes";
 
 import Link from "next/link";
 import { getProviders, useSession } from "next-auth/react";
 
 const Home = () => {
   const [providers, setProviders] = useState(null);
+  const { theme, setTheme } = useTheme();
 
   const { data: session } = useSession();
 
@@ -23,15 +25,28 @@ const Home = () => {
     setUpProviders();
   }, []);
   return (
-    <section className="w-[900px] h-screen flex-center flex-col border-[#2F3336] border-l-[1px] border-r-[1px] overflow-y-auto z-10">
-      <div className="flex items-center justify-between p-4  bg-black/30 backdrop-blur-sm border-b-[1px] border-[#2F3336] fixed w-[56%] z-50">
-        <h1 className="text-xl text-[#D9D9D9] font-bold">Home</h1>
-        <Image src="/spark.svg" width={25} height={25} alt="spark-icon" />
+    <section>
+      <div className="flex items-center justify-center w-full p-4 bg-white dark:bg-black">
+        {theme === "dark" ? (
+          <Image
+            src="/threadswhite.svg"
+            width={25}
+            height={25}
+            alt="threads-icon"
+          />
+        ) : (
+          <Image
+            src="/threadsblack.svg"
+            width={25}
+            height={25}
+            alt="threads-icon"
+          />
+        )}
       </div>
-      <div className="mt-16">
-        {session?.user ? (
-          <div className="w-full">
-            <div className="flex items-center gap-4 p-4 w-full">
+      <div>
+        {/* {session?.user ? (
+          <div className="">
+            <div className="">
               <Image
                 src={session?.user.image}
                 width={50}
@@ -50,8 +65,7 @@ const Home = () => {
               </h2>
             </div>
           </>
-        )}
-
+        )} */}
         <Feed />
       </div>
     </section>

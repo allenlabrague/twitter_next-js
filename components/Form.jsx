@@ -1,17 +1,5 @@
 import Link from "next/link";
-import { Button, Loading } from "@nextui-org/react";
-
-const btnStyle = {
-  background: "#1D9BF0",
-  textAlign: "center",
-  color: "white",
-  paddingTop: "0.25rem",
-  paddingRight: "1rem",
-  paddingBottom: "0.25rem",
-  paddingLeft: "1rem",
-  borderRadius: "9999px",
-  fontWeight: "bold",
-};
+import { Button } from "@nextui-org/react";
 
 const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
   return (
@@ -54,7 +42,8 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
             }}
           >
             {submitting ? (
-              <Loading type="points" color="currentColor" size="sm" />
+              // <Loading type="points" color="currentColor" size="sm" />
+              <p>loading...</p>
             ) : (
               type
             )}

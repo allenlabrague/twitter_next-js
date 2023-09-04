@@ -9,13 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@nextui-org/react": "^1.0.0-beta.13",
+    "@nextui-org/react": "^2.1.10",
     "autoprefixer": "10.4.14",
-    "framer-motion": "^10.12.18",
-    "moment": "^2.29.4",
+    "framer-motion": "^10.16.3",
     "mongoose": "^7.3.4",
     "next": "13.4.9",
     "next-auth": "^4.22.1",
+    "next-themes": "^0.2.1",
     "postcss": "8.4.25",
     "react": "18.2.0",
     "react-dom": "18.2.0",

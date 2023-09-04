@@ -2,19 +2,14 @@
 
 import { useState, useEffect } from "react";
 import CreateTweet from "@app/create-tweet/page";
+import { ThemeSwitcher } from "./ThemeSwitcher";
+import { AiOutlineHome, AiOutlineUser, AiOutlineUpload } from "react-icons/ai";
+import { PiSignOutFill } from "react-icons/pi";
 
 import Link from "next/link";
 import Image from "next/image";
 
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
-import {
-  Modal,
-  useModal,
-  Button,
-  Tooltip,
-  Popover,
-  css,
-} from "@nextui-org/react";
 
 const Navbar = () => {
   const [providers, setProviders] = useState(null);
@@ -31,38 +26,27 @@ const Navbar = () => {
     setUpProviders();
   }, []);
 
-  const { setVisible, bindings } = useModal();
-
   return (
-    <nav className="fixed bottom-5 flex items-center justify-around w-full">
+    <nav className="fixed bottom-0 flex items-center justify-around w-full bg-white z-10 dark:bg-black">
       {session?.user ? (
         <>
-          <div className="flex items-center justify-around w-full">
+          <div className="flex items-center justify-around w-full p-5">
             <Link href="/" className="">
-              <Image src="/home.svg" width={20} height={20} alt="home-icon" />
+              <AiOutlineHome fontSize={25} />
             </Link>
             <Link href="/profile" className="">
-              <Image
-                src="/profile.svg"
-                width={20}
-                height={20}
-                alt="home-icon"
-              />
+              <AiOutlineUser fontSize={25} />
             </Link>
-            <button type="button" onClick={signOut} className="">
-              <Image
-                src="/signout.svg"
-                width={20}
-                height={20}
-                alt="home-icon"
-              />
-            </button>
             <button onPress={() => setVisible(true)}>
-              <Image src="/post.svg" width={20} height={20} alt="home-icon" />
+              <AiOutlineUpload fontSize={25} />
             </button>
+            <button type="button" onClick={signOut} className="">
+              <PiSignOutFill fontSize={25} />
+            </button>
+            <ThemeSwitcher />
           </div>
           <div>
-            <Modal
+            {/* <Modal
               width="700px"
               preventClose
               aria-labelledby="modal-title"
@@ -89,7 +73,7 @@ const Navbar = () => {
                   <CreateTweet />
                 </div>
               </Modal.Body>
-            </Modal>
+            </Modal> */}
           </div>
         </>
       ) : (
