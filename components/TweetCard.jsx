@@ -5,8 +5,7 @@ import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
-
-import { MdVerified } from "react-icons/md";
+import { AiOutlineReload } from "react-icons/ai";
 import { BsThreeDots, BsFillTrashFill } from "react-icons/bs";
 import {
   Sheet,
@@ -32,13 +31,28 @@ const TweetCard = ({ post, handleDelete }) => {
   const pathName = usePathname();
   const router = useRouter();
 
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  const handleDeleteClick = async () => {
+    try {
+      // Set isDeleting to true to show loading text
+      setIsDeleting(true);
+
+      // Perform the delete action
+      await handleDelete();
+
+      // Set isDeleting back to false when the delete action is complete
+      setIsDeleting(false);
+    } catch (error) {
+      // Handle any errors here
+      console.error("Error deleting post", error);
+
+      // Set isDeleting back to false in case of an error
+      setIsDeleting(false);
+    }
+  };
+
   const ProfileTooltip = () => {
-    const [togglebtn, setTogglebtn] = useState(false);
-
-    const handleClick = () => {
-      setTogglebtn(!togglebtn);
-    };
-
     return (
       <>
         <div className="flex flex-col gap-1">
@@ -115,10 +129,21 @@ const TweetCard = ({ post, handleDelete }) => {
                       </DialogHeader>
                       <Button
                         variant="destructive"
-                        onClick={handleDelete}
+                        onClick={handleDeleteClick}
                         className="w-full mt-3"
                       >
-                        Delete
+                        {isDeleting ? (
+                          <Button
+                            disabled
+                            variant="destructive"
+                            className="w-full"
+                          >
+                            <AiOutlineReload className="mr-2 h-4 w-4 animate-spin" />
+                            Deleting...
+                          </Button>
+                        ) : (
+                          "Delete"
+                        )}
                       </Button>
                     </DialogContent>
                   </Dialog>

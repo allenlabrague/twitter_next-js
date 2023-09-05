@@ -20,9 +20,8 @@ const Profile = ({ name, email, data, handleDelete }) => {
       <div>
         <div className="p-4 flex items-center justify-between w-full">
           <div>
-            <div className="flex items-center gap-1">
+            <div>
               <h2 className="text-xl font-bold">{session?.user.name}</h2>
-              <MdVerified color="rgb(29, 155, 240)" />
             </div>
             <p className="text-sm text-gray-400">{session?.user.email}</p>
           </div>

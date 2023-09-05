@@ -50,7 +50,7 @@ const Navbar = () => {
                   <AiOutlineUpload fontSize={25} />
                 </button>
               </SheetTrigger>
-              <SheetContent side="bottom" className="w-full h-[500px]">
+              <SheetContent side="bottom" className="w-full h-auto">
                 <SheetHeader>
                   <SheetTitle className="mb-2">New thread</SheetTitle>
                   <Separator />

@@ -24,7 +24,7 @@ const MyProfile = () => {
   }, []);
 
   const handleDelete = async (post) => {
-    const hasConfirmed = confirm("Are you sure you want to delete this tweet?");
+    const hasConfirmed = true;
 
     if (hasConfirmed) {
       try {

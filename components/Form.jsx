@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { Button } from "./ui/button";
 import Image from "next/image";
+import { AiOutlineReload } from "react-icons/ai";
 
 const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
   const { data: session } = useSession();
@@ -32,16 +33,20 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
           rows={10}
         />
         {post.tweet ? (
-          <Button auto type="submit" disabled={submitting}>
+          <Button className="w-full" type="submit" disabled={submitting}>
             {submitting ? (
-              // <Loading type="points" color="currentColor" size="sm" />
-              <p>Loading...</p>
+              <Button disabled className="w-full">
+                <AiOutlineReload className="mr-2 h-4 w-4 animate-spin" />
+                Loading...
+              </Button>
             ) : (
               <p>Post</p>
             )}
           </Button>
         ) : (
-          <Button disabled>Post</Button>
+          <Button disabled className="w-full">
+            Post
+          </Button>
         )}
       </form>
     </section>

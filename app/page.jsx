@@ -43,28 +43,6 @@ const Home = () => {
         )}
       </div>
       <div>
-        {/* {session?.user ? (
-          <div className="">
-            <div className="">
-              <Image
-                src={session?.user.image}
-                width={50}
-                height={50}
-                alt="user-profile"
-                className="rounded-full"
-              />
-              <CreateTweet />
-            </div>
-          </div>
-        ) : (
-          <>
-            <div>
-              <h2 className="text-xl text-gray-400 text-center p-4">
-                Sign in to tweet and update your friends
-              </h2>
-            </div>
-          </>
-        )} */}
         <Feed />
       </div>
     </section>
