@@ -47,7 +47,7 @@ const CreateTweet = () => {
   return (
     <div className="w-full">
       <Form
-        type="Tweet"
+        type="Post"
         post={post}
         setPost={setPost}
         submitting={submitting}

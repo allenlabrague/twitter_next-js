@@ -5,7 +5,6 @@ import Feed from "@components/Feed";
 import Image from "next/image";
 import CreateTweet from "./create-tweet/page";
 import { useTheme } from "next-themes";
-
 import Link from "next/link";
 import { getProviders, useSession } from "next-auth/react";
 

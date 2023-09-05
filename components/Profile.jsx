@@ -3,7 +3,6 @@ import TweetCard from "./TweetCard";
 import Link from "next/link";
 import Image from "next/image";
 
-import { Button } from "@nextui-org/react";
 import { BiArrowBack } from "react-icons/bi";
 import { GoSignOut } from "react-icons/go";
 import { MdVerified } from "react-icons/md";
@@ -13,7 +12,7 @@ const Profile = ({ name, email, data, handleDelete }) => {
 
   return (
     <section className="h-screen flex-center flex-col">
-      <div className="p-4 bg-white">
+      <div className="p-4 bg-white dark:bg-black">
         <Link href="/">
           <BiArrowBack fontSize={20} />
         </Link>

@@ -16,7 +16,7 @@ export function ThemeSwitcher() {
   if (!mounted) return null;
 
   return (
-    <div>
+    <div className="flex items-center justify-center">
       <button onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
         {theme === "dark" ? <FiMoon fontSize={25} /> : <BiSun fontSize={25} />}
       </button>

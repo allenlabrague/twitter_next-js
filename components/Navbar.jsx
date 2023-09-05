@@ -1,15 +1,22 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import CreateTweet from "@app/create-tweet/page";
 import { ThemeSwitcher } from "./ThemeSwitcher";
 import { AiOutlineHome, AiOutlineUser, AiOutlineUpload } from "react-icons/ai";
 import { PiSignOutFill } from "react-icons/pi";
-
 import Link from "next/link";
 import Image from "next/image";
-
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
+import { Separator } from "./ui/separator";
 
 const Navbar = () => {
   const [providers, setProviders] = useState(null);
@@ -37,9 +44,23 @@ const Navbar = () => {
             <Link href="/profile" className="">
               <AiOutlineUser fontSize={25} />
             </Link>
-            <button onPress={() => setVisible(true)}>
-              <AiOutlineUpload fontSize={25} />
-            </button>
+            <Sheet>
+              <SheetTrigger>
+                <button className="flex items-center justify-center">
+                  <AiOutlineUpload fontSize={25} />
+                </button>
+              </SheetTrigger>
+              <SheetContent side="bottom" className="w-full h-[500px]">
+                <SheetHeader>
+                  <SheetTitle className="mb-2">New thread</SheetTitle>
+                  <Separator />
+                  <SheetDescription>
+                    <CreateTweet />
+                  </SheetDescription>
+                </SheetHeader>
+              </SheetContent>
+            </Sheet>
+
             <button type="button" onClick={signOut} className="">
               <PiSignOutFill fontSize={25} />
             </button>
@@ -85,7 +106,7 @@ const Navbar = () => {
                   src="/bgThreads.svg"
                   fill
                   alt="threads"
-                  className="absolute top left-0 right-0 mx-auto"
+                  className="absolute top-0 bottom-0 left-0 right-0 mx-auto"
                 />
                 <button
                   type="button"

@@ -8,9 +8,24 @@ import Link from "next/link";
 
 import { MdVerified } from "react-icons/md";
 import { BsThreeDots, BsFillTrashFill } from "react-icons/bs";
-import { Popover, PopoverContent, PopoverTrigger } from "@nextui-org/popover";
-import { Button } from "@nextui-org/button";
-import { Tooltip } from "@nextui-org/tooltip";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Button } from "./ui/button";
 
 const TweetCard = ({ post, handleDelete }) => {
   const { data: session } = useSession();
@@ -28,44 +43,23 @@ const TweetCard = ({ post, handleDelete }) => {
       <>
         <div className="flex flex-col gap-1">
           <div className="flex items-center justify-between mb-2">
-            <div>
-              <Link href="/profile">
-                <Image
-                  src={post.creator.image}
-                  alt="user-image"
-                  width={50}
-                  height={50}
-                  className="rounded-full"
-                />
-              </Link>
-            </div>
-            <div>
-              <Button auto onClick={handleClick}>
-                {togglebtn ? "Unfollow" : "Follow"}
-              </Button>
-            </div>
+            <Link href="/profile">
+              <Image
+                src={post.creator.image}
+                alt="user-image"
+                width={50}
+                height={50}
+                className="rounded-full"
+              />
+            </Link>
           </div>
-          <div>
-            <div className="flex items-center">
-              <h3 className="font-bold hover:underline">
-                {post.creator.username}
-              </h3>
-              <MdVerified color="rgb(29, 155, 240)" />
-            </div>
-            <p className="text-sm text-gray-400">{post.creator.email}</p>
-          </div>
-          <p className="mt-3">
-            The Follow is Clickable but when you stop hovering and start hover
-            again it will still show Follow I'm sorry I am still learning, But I
-            hope you liked my Twitter Clone enjoy it❤️😁
-          </p>
         </div>
       </>
     );
   };
 
   return (
-    <div className="flex w-full px-4 pt-3 pb-0 transition-all">
+    <div className="flex w-full p-4 transition-all border-b-[1px] border-gray-400">
       <div className="w-full">
         <div className="flex relative">
           <Link href="/profile">
@@ -96,29 +90,42 @@ const TweetCard = ({ post, handleDelete }) => {
 
       {session?.user.id === post.creator._id && pathName === "/profile" && (
         <div>
-          <Popover>
-            <PopoverTrigger>
+          <Sheet>
+            <SheetTrigger>
               <button className="xl:bg-transparent focus:outline-none focus:shadow-outline">
                 <BsThreeDots />
               </button>
-            </PopoverTrigger>
-            <PopoverContent
-              css={{
-                background: "Black",
-              }}
-            >
-              <div className="p-3 flex items-center gap-3">
-                <Button
-                  auto
-                  color="error"
-                  onClick={handleDelete}
-                  icon={<BsFillTrashFill />}
-                >
-                  Delete
-                </Button>
-              </div>
-            </PopoverContent>
-          </Popover>
+            </SheetTrigger>
+            <SheetContent side="bottom" className="w-full h-auto">
+              <SheetHeader>
+                <SheetDescription>
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button variant="destructive" className="w-full mt-3">
+                        Delete
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="sm:max-w-[425px] w-[350px] rounded-2xl">
+                      <DialogHeader>
+                        <DialogTitle>Delete post?</DialogTitle>
+                        <DialogDescription>
+                          if you delete this post, you won't be able to restore
+                          it.
+                        </DialogDescription>
+                      </DialogHeader>
+                      <Button
+                        variant="destructive"
+                        onClick={handleDelete}
+                        className="w-full mt-3"
+                      >
+                        Delete
+                      </Button>
+                    </DialogContent>
+                  </Dialog>
+                </SheetDescription>
+              </SheetHeader>
+            </SheetContent>
+          </Sheet>
         </div>
       )}
     </div>
