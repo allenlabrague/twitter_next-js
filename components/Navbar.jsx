@@ -10,13 +10,16 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import CreateTweet from "@app/create-tweet/page";
-import { ThemeSwitcher } from "./ThemeSwitcher";
-import { AiOutlineHome, AiOutlineUser, AiOutlineUpload } from "react-icons/ai";
-import { PiSignOutFill } from "react-icons/pi";
+import {
+  AiOutlineHome,
+  AiOutlineUser,
+  AiOutlineUpload,
+  AiOutlineSearch,
+  AiOutlineHeart,
+} from "react-icons/ai";
 import Link from "next/link";
 import Image from "next/image";
-import { signIn, signOut, useSession, getProviders } from "next-auth/react";
-import { Separator } from "./ui/separator";
+import { signIn, useSession, getProviders } from "next-auth/react";
 
 const Navbar = () => {
   const [providers, setProviders] = useState(null);
@@ -34,15 +37,15 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="fixed bottom-0 flex items-center justify-around w-full bg-white z-10 dark:bg-black">
+    <nav className="fixed bottom-0 flex items-center justify-around w-full bg-white z-10 dark:bg-[#121212]">
       {session?.user ? (
         <>
           <div className="flex items-center justify-around w-full p-5">
-            <Link href="/" className="">
+            <Link href="/">
               <AiOutlineHome fontSize={25} />
             </Link>
-            <Link href="/profile" className="">
-              <AiOutlineUser fontSize={25} />
+            <Link href="/search">
+              <AiOutlineSearch fontSize={25} />
             </Link>
             <Sheet>
               <SheetTrigger>
@@ -50,20 +53,26 @@ const Navbar = () => {
                   <AiOutlineUpload fontSize={25} />
                 </button>
               </SheetTrigger>
-              <SheetContent side="bottom" className="w-full h-auto">
+              <SheetContent
+                side="bottom"
+                className="w-full h-auto dark:bg-[#121212] rounded-t-3xl border-t border-gray-200 dark:border-none"
+              >
                 <SheetHeader>
-                  <SheetTitle className="mb-2">New thread</SheetTitle>
-                  <Separator />
+                  <SheetTitle className="mb-2 font-medium">
+                    New thread
+                  </SheetTitle>
                   <SheetDescription>
                     <CreateTweet />
                   </SheetDescription>
                 </SheetHeader>
               </SheetContent>
             </Sheet>
-            <ThemeSwitcher />
-            <button type="button" onClick={signOut} className="">
-              <PiSignOutFill fontSize={25} />
-            </button>
+            <Link href="/activity">
+              <AiOutlineHeart fontSize={25} />
+            </Link>
+            <Link href="/profile">
+              <AiOutlineUser fontSize={25} />
+            </Link>
           </div>
         </>
       ) : (
@@ -83,7 +92,7 @@ const Navbar = () => {
                   onClick={() => signIn(provider.id)}
                   className="absolute bottom-24 z-10 left-0 right-0 mx-auto w-[90%] bg-white rounded-xl p-5 flex items-center justify-between shadow-xl dark:bg-[#2C2C2C]"
                 >
-                  <h2 className="text-gray-400 dark:text-white text-sm hover:text-black transition-colors">
+                  <h2 className="text-black dark:text-white text-sm">
                     Continue with Google
                   </h2>
                   <Image

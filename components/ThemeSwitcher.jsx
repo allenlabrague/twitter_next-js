@@ -4,6 +4,7 @@ import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { FiMoon } from "react-icons/fi";
 import { BiSun } from "react-icons/bi";
+import { Button } from "./ui/button";
 
 export function ThemeSwitcher() {
   const [mounted, setMounted] = useState(false);
@@ -17,9 +18,12 @@ export function ThemeSwitcher() {
 
   return (
     <div className="flex items-center justify-center">
-      <button onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
+      <Button
+        className="w-full"
+        onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+      >
         {theme === "dark" ? <FiMoon fontSize={25} /> : <BiSun fontSize={25} />}
-      </button>
+      </Button>
       {/* <button onClick={() => setTheme("light")}></button>
       <button onClick={() => setTheme("dark")}></button> */}
     </div>

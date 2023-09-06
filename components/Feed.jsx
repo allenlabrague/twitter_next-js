@@ -1,12 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
-
 import TweetCard from "./TweetCard";
 
 const TweetCardList = ({ data }) => {
   return (
     <div className="flex flex-col-reverse">
+      <div className="w-full h-[65px]" />
       {data.map((post) => (
         <TweetCard key={post._id} post={post} />
       ))}
@@ -24,7 +24,6 @@ const Feed = () => {
 
       setPosts(data);
     };
-
     fetchPosts();
   }, []);
 

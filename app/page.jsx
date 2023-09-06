@@ -25,7 +25,7 @@ const Home = () => {
   }, []);
   return (
     <section>
-      <div className="flex items-center justify-center w-full p-4 bg-white dark:bg-black">
+      <div className="flex items-center justify-center w-full p-4 bg-white dark:bg-[#121212]">
         {theme === "dark" ? (
           <Image
             src="/threadswhite.svg"

@@ -78,7 +78,7 @@ const TweetCard = ({ post, handleDelete }) => {
   }, [post.createdAt]);
 
   return (
-    <div className="flex w-full p-4 transition-all border-b-[1px] border-gray-400">
+    <div className="flex w-full p-4 py-5 transition-all border-b dark:border-[#1E1E1E] border-gray-200">
       <div className="w-full">
         <div className="flex relative">
           <Link href="/profile">
@@ -94,7 +94,7 @@ const TweetCard = ({ post, handleDelete }) => {
             <div className="ml-[4rem] w-full">
               <div className="flex items-center w-full justify-between">
                 <Link href="/profile" className="cursor-pointer">
-                  <h3 className="font-bold">{post.creator.username}</h3>
+                  <h3 className="font-medium">{post.creator.username}</h3>
                 </Link>
                 <p className="text-gray-400 text-sm">{timeAgo}</p>
               </div>
@@ -114,7 +114,10 @@ const TweetCard = ({ post, handleDelete }) => {
                 <BsThreeDots />
               </button>
             </SheetTrigger>
-            <SheetContent side="bottom" className="w-full h-auto">
+            <SheetContent
+              side="bottom"
+              className="w-full h-auto dark:bg-[#121212] rounded-t-3xl border-t border-gray-200 dark:border-none"
+            >
               <SheetHeader>
                 <SheetDescription>
                   <Dialog>
@@ -123,7 +126,7 @@ const TweetCard = ({ post, handleDelete }) => {
                         Delete
                       </Button>
                     </DialogTrigger>
-                    <DialogContent className="sm:max-w-[425px] w-[350px] rounded-2xl">
+                    <DialogContent className="sm:max-w-[425px] w-[350px] rounded-2xl dark:bg-[#121212] rounded-t-3xl border-t border-gray-200 dark:border-none">
                       <DialogHeader>
                         <DialogTitle>Delete post?</DialogTitle>
                         <DialogDescription>
