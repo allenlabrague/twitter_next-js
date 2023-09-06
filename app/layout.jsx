@@ -13,7 +13,7 @@ const RootLayout = ({ children }) => {
       <head>
         <link rel="icon" href="/threads.svg" sizes="any" />
       </head>
-      <body>
+      <body className="dark:bg-black">
         <Provider>
           <Navbar />
           <main>{children}</main>

@@ -25,6 +25,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "./ui/button";
+import moment from "moment/moment";
 
 const TweetCard = ({ post, handleDelete }) => {
   const { data: session } = useSession();
@@ -52,25 +53,29 @@ const TweetCard = ({ post, handleDelete }) => {
     }
   };
 
-  const ProfileTooltip = () => {
-    return (
-      <>
-        <div className="flex flex-col gap-1">
-          <div className="flex items-center justify-between mb-2">
-            <Link href="/profile">
-              <Image
-                src={post.creator.image}
-                alt="user-image"
-                width={50}
-                height={50}
-                className="rounded-full"
-              />
-            </Link>
-          </div>
-        </div>
-      </>
-    );
-  };
+  const [timeAgo, setTimeAgo] = useState("");
+
+  useEffect(() => {
+    const updateRelativeTime = () => {
+      const now = moment();
+      const postTime = moment(post.createdAt);
+      const duration = moment.duration(now.diff(postTime));
+
+      if (duration.asSeconds() < 60) {
+        setTimeAgo(`${Math.floor(duration.asSeconds())}s`);
+      } else if (duration.asMinutes() < 60) {
+        setTimeAgo(`${Math.floor(duration.asMinutes())}m`);
+      } else if (duration.asHours() < 24) {
+        setTimeAgo(`${Math.floor(duration.asHours())}h`);
+      } else {
+        setTimeAgo(`${Math.floor(duration.asDays())}d`);
+      }
+    };
+
+    const interval = setInterval(updateRelativeTime, 1000); // Update every second
+    updateRelativeTime(); // Initialize the time
+    return () => clearInterval(interval); // Clean up the interval on unmount
+  }, [post.createdAt]);
 
   return (
     <div className="flex w-full p-4 transition-all border-b-[1px] border-gray-400">
@@ -87,12 +92,11 @@ const TweetCard = ({ post, handleDelete }) => {
           </Link>
           <div className="flex gap-4 justify-between w-full">
             <div className="ml-[4rem] w-full">
-              <div className="flex gap-1 items-center cursor-pointer">
-                <Link href="/profile">
-                  <h3 className="font-bold hover:underline">
-                    {post.creator.username}
-                  </h3>
+              <div className="flex items-center w-full justify-between">
+                <Link href="/profile" className="cursor-pointer">
+                  <h3 className="font-bold">{post.creator.username}</h3>
                 </Link>
+                <p className="text-gray-400 text-sm">{timeAgo}</p>
               </div>
               <div className="-z-10">
                 <p className="text-base -z-10">{post.tweet}</p>
@@ -106,7 +110,7 @@ const TweetCard = ({ post, handleDelete }) => {
         <div>
           <Sheet>
             <SheetTrigger>
-              <button className="xl:bg-transparent focus:outline-none focus:shadow-outline">
+              <button className="xl:bg-transparent focus:outline-none focus:shadow-outline relative top-[0.2rem] ml-[1rem]">
                 <BsThreeDots />
               </button>
             </SheetTrigger>

@@ -60,41 +60,10 @@ const Navbar = () => {
                 </SheetHeader>
               </SheetContent>
             </Sheet>
-
+            <ThemeSwitcher />
             <button type="button" onClick={signOut} className="">
               <PiSignOutFill fontSize={25} />
             </button>
-            <ThemeSwitcher />
-          </div>
-          <div>
-            {/* <Modal
-              width="700px"
-              preventClose
-              aria-labelledby="modal-title"
-              aria-describedby="modal-description"
-              {...bindings}
-              style={{ backgroundColor: "black", color: "white" }}
-            >
-              <Modal.Header className="w-[90px]">
-                <Button auto onPress={() => setVisible(false)}>
-                  <div className="hover:bg-[#171818] z-10 p-2 rounded-full">
-                    close
-                  </div>
-                </Button>
-              </Modal.Header>
-              <Modal.Body>
-                <div className="flex items-center gap-4 pb-4">
-                  <Image
-                    src={session?.user.image}
-                    width={50}
-                    height={50}
-                    alt="user-profile"
-                    className="rounded-full"
-                  />
-                  <CreateTweet />
-                </div>
-              </Modal.Body>
-            </Modal> */}
           </div>
         </>
       ) : (
@@ -112,9 +81,9 @@ const Navbar = () => {
                   type="button"
                   key={provider.name}
                   onClick={() => signIn(provider.id)}
-                  className="absolute bottom-24 z-10 left-0 right-0 mx-auto w-[90%] bg-white rounded-xl p-5 flex items-center justify-between shadow-xl"
+                  className="absolute bottom-24 z-10 left-0 right-0 mx-auto w-[90%] bg-white rounded-xl p-5 flex items-center justify-between shadow-xl dark:bg-[#2C2C2C]"
                 >
-                  <h2 className="text-gray-400 text-sm hover:text-black transition-colors">
+                  <h2 className="text-gray-400 dark:text-white text-sm hover:text-black transition-colors">
                     Continue with Google
                   </h2>
                   <Image
