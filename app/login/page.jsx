@@ -4,8 +4,14 @@ import Image from "next/image";
 import { signIn } from "next-auth/react";
 
 const Home = () => {
+  // async function handleGoogleSignin() {
+  //   signIn("google", { callbackUrl: "http://localhost:3000" });
+  // }
+
   async function handleGoogleSignin() {
-    signIn("google", { callbackUrl: "http://localhost:3000" });
+    signIn("google", {
+      callbackUrl: "https://twitter-next-js-sepia.vercel.app/",
+    });
   }
 
   return (
