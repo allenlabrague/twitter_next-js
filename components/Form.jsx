@@ -52,10 +52,10 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
           disabled={submitting}
         >
           {submitting ? (
-            <Button disabled className="w-full bg-black dark:bg-white">
+            <p className="w-full bg-black dark:bg-white">
               <AiOutlineReload className="mr-2 h-4 w-4 animate-spin" />
               {type}ing...
-            </Button>
+            </p>
           ) : (
             <p>{type}</p>
           )}

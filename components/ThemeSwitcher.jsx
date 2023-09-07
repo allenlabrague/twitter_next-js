@@ -24,8 +24,6 @@ export function ThemeSwitcher() {
       >
         {theme === "dark" ? <FiMoon fontSize={25} /> : <BiSun fontSize={25} />}
       </Button>
-      {/* <button onClick={() => setTheme("light")}></button>
-      <button onClick={() => setTheme("dark")}></button> */}
     </div>
   );
 }

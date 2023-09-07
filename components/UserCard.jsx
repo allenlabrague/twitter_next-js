@@ -1,13 +1,7 @@
-"use client";
-
-import { useState, useEffect } from "react";
 import Image from "next/image";
-import { useSession } from "next-auth/react";
 import Link from "next/link";
 
 const UserCard = ({ post }) => {
-  const { data: session } = useSession();
-
   return (
     <div className="flex w-full p-4 transition-all">
       <div className="w-full">

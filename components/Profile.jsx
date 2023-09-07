@@ -43,7 +43,6 @@ const Profile = ({ name, email, data, handleDelete }) => {
           />
         </div>
       </div>
-      <div className="p-4">Bio Here</div>
       <div className="flex items-center justify-center w-full gap-3 px-4 my-4">
         <Button className="w-full">Edit Profile</Button>
         <Dialog>
