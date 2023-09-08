@@ -15,7 +15,11 @@ const Home = () => {
         />
         <button
           type="button"
-          onClick={() => signIn("google", { callbackUrl: "/" })}
+          onClick={() =>
+            signIn("google", {
+              callbackUrl: "/https://twitter-next-js-sepia.vercel.app",
+            })
+          }
           className="absolute bottom-24 z-10 left-0 right-0 mx-auto w-[90%] bg-white rounded-xl p-5 flex items-center justify-between shadow-xl dark:bg-[#2C2C2C]"
         >
           <h2 className="text-black dark:text-white text-sm">
