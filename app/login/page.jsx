@@ -5,7 +5,9 @@ import { signIn } from "next-auth/react";
 
 const Home = () => {
   async function handleGoogleSignin() {
-    signIn("google", { callbackUrl: "http://localhost:3000" });
+    signIn("google", {
+      callbackUrl: "https://twitter-next-js-sepia.vercel.app/",
+    });
   }
   return (
     <nav className="fixed bottom-0 flex items-center justify-around w-full bg-white z-10 dark:bg-[#121212]">
