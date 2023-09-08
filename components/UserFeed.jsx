@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 
 import UserCard from "./UserCard";
+import { AiOutlineSearch } from "react-icons/ai";
 
 const UserCardList = ({ data }) => {
   return (
@@ -62,7 +63,7 @@ const UserFeed = () => {
       <h1 className="text-3xl font-semibold my-1">Search</h1>
       <input
         type="text"
-        placeholder="Search for a username"
+        placeholder="Search for a name"
         value={searchText}
         onChange={handleSearchChange}
         required

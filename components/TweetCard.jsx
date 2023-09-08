@@ -6,20 +6,12 @@ import { useSession } from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import { AiOutlineReload } from "react-icons/ai";
-import { BsThreeDots, BsFillTrashFill } from "react-icons/bs";
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+import { BsThreeDots } from "react-icons/bs";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -27,7 +19,7 @@ import {
 import { Button } from "./ui/button";
 import moment from "moment/moment";
 
-const TweetCard = ({ post, handleDelete }) => {
+const TweetCard = ({ post, handleDelete, handleEdit }) => {
   const { data: session } = useSession();
   const pathName = usePathname();
   const router = useRouter();
@@ -109,6 +101,51 @@ const TweetCard = ({ post, handleDelete }) => {
       {session?.user.id === post.creator._id && pathName === "/profile" && (
         <div>
           <Sheet>
+            <SheetTrigger asChild>
+              <button className="xl:bg-transparent focus:outline-none focus:shadow-outline relative top-[0.2rem] ml-[1rem]">
+                <BsThreeDots />
+              </button>
+            </SheetTrigger>
+            <SheetContent
+              side="bottom"
+              className="w-full h-auto dark:bg-[#121212] rounded-t-3xl border-t border-gray-200 dark:border-none"
+            >
+              <Button onClick={handleEdit} className="w-full mt-3">
+                Edit
+              </Button>
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button variant="destructive" className="w-full mt-3">
+                    Delete
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-[425px] w-[350px] rounded-2xl dark:bg-[#121212] rounded-t-3xl border-t border-gray-200 dark:border-none">
+                  <DialogHeader>
+                    <DialogTitle>Delete post?</DialogTitle>
+                    <DialogDescription>
+                      if you delete this post, you won't be able to restore it.
+                    </DialogDescription>
+                  </DialogHeader>
+                  <Button
+                    variant="destructive"
+                    onClick={handleDeleteClick}
+                    className="w-full mt-3"
+                  >
+                    {isDeleting ? (
+                      <Button disabled variant="destructive" className="w-full">
+                        <AiOutlineReload className="mr-2 h-4 w-4 animate-spin" />
+                        Deleting...
+                      </Button>
+                    ) : (
+                      "Delete"
+                    )}
+                  </Button>
+                </DialogContent>
+              </Dialog>
+            </SheetContent>
+          </Sheet>
+
+          {/* <Sheet>
             <SheetTrigger>
               <button className="xl:bg-transparent focus:outline-none focus:shadow-outline relative top-[0.2rem] ml-[1rem]">
                 <BsThreeDots />
@@ -120,44 +157,11 @@ const TweetCard = ({ post, handleDelete }) => {
             >
               <SheetHeader>
                 <SheetDescription>
-                  <Dialog>
-                    <DialogTrigger asChild>
-                      <Button variant="destructive" className="w-full mt-3">
-                        Delete
-                      </Button>
-                    </DialogTrigger>
-                    <DialogContent className="sm:max-w-[425px] w-[350px] rounded-2xl dark:bg-[#121212] rounded-t-3xl border-t border-gray-200 dark:border-none">
-                      <DialogHeader>
-                        <DialogTitle>Delete post?</DialogTitle>
-                        <DialogDescription>
-                          if you delete this post, you won't be able to restore
-                          it.
-                        </DialogDescription>
-                      </DialogHeader>
-                      <Button
-                        variant="destructive"
-                        onClick={handleDeleteClick}
-                        className="w-full mt-3"
-                      >
-                        {isDeleting ? (
-                          <Button
-                            disabled
-                            variant="destructive"
-                            className="w-full"
-                          >
-                            <AiOutlineReload className="mr-2 h-4 w-4 animate-spin" />
-                            Deleting...
-                          </Button>
-                        ) : (
-                          "Delete"
-                        )}
-                      </Button>
-                    </DialogContent>
-                  </Dialog>
+                  
                 </SheetDescription>
               </SheetHeader>
             </SheetContent>
-          </Sheet>
+          </Sheet> */}
         </div>
       )}
     </div>

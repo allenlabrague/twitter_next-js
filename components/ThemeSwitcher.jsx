@@ -22,7 +22,17 @@ export function ThemeSwitcher() {
         className="w-full"
         onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
       >
-        {theme === "dark" ? <FiMoon fontSize={25} /> : <BiSun fontSize={25} />}
+        {theme === "dark" ? (
+          <>
+            <FiMoon fontSize={25} />
+            <p className="ml-2">Dark</p>
+          </>
+        ) : (
+          <>
+            <BiSun fontSize={25} />
+            <p className="ml-2">Light</p>
+          </>
+        )}
       </Button>
     </div>
   );

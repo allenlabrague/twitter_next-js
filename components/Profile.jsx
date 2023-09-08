@@ -1,4 +1,4 @@
-import { signOut, useSession } from "next-auth/react";
+import { signOut } from "next-auth/react";
 import TweetCard from "./TweetCard";
 import Link from "next/link";
 import Image from "next/image";
@@ -7,17 +7,12 @@ import { Button } from "./ui/button";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
-  DialogFooter,
   DialogHeader,
-  DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { ThemeSwitcher } from "./ThemeSwitcher";
 
-const Profile = ({ name, email, data, handleDelete }) => {
-  const { data: session } = useSession();
-
+const Profile = ({ name, email, image, handleEdit, data, handleDelete }) => {
   return (
     <section className="h-screen flex-center flex-col">
       <div className="p-4 bg-white dark:bg-[#121212]">
@@ -30,12 +25,12 @@ const Profile = ({ name, email, data, handleDelete }) => {
         <div className="p-4 flex items-center justify-between w-full">
           <div>
             <div>
-              <h2 className="text-2xl font-semibold">{session?.user.name}</h2>
+              <h2 className="text-2xl font-semibold">{name}</h2>
             </div>
-            <p className="text-sm">{session?.user.email}</p>
+            <p className="text-sm">{email}</p>
           </div>
           <Image
-            src={session?.user.image}
+            src={image}
             width={60}
             height={60}
             alt="user-profile"
@@ -64,17 +59,24 @@ const Profile = ({ name, email, data, handleDelete }) => {
         </Dialog>
       </div>
       <div className="p-2 pt-4 flex items-center justify-center border-b-[2px] mx-4 border-black dark:border-white ">
-        <h3 className="text-center">Threads</h3>
+        <h3 className="text-center font-medium">Threads</h3>
       </div>
       <div className="flex flex-col-reverse">
         <div className="w-full h-[65px]" />
-        {data.map((post) => (
-          <TweetCard
-            key={post._id}
-            post={post}
-            handleDelete={() => handleDelete && handleDelete(post)}
-          />
-        ))}
+        {data.length === 0 ? (
+          <p className="text-center mt-5">Create a post</p>
+        ) : (
+          <>
+            {data.map((post) => (
+              <TweetCard
+                key={post._id}
+                post={post}
+                handleEdit={() => handleEdit && handleEdit(post)}
+                handleDelete={() => handleDelete && handleDelete(post)}
+              />
+            ))}
+          </>
+        )}
       </div>
     </section>
   );

@@ -19,7 +19,7 @@ const CreateTweet = () => {
     setSubmitting(true);
     setPost({ ...post });
     setTimeout(() => {
-      window.location.reload();
+      router.refresh();
     }, 2000);
 
     try {

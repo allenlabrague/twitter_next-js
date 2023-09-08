@@ -12,14 +12,10 @@ const MyProfile = () => {
 
   const [posts, setPosts] = useState([]);
 
-  if (!session?.user) {
-    router.push("/");
-  }
-
   useEffect(() => {
     const fetchPosts = async () => {
-      const res = await fetch(`/api/users/${session?.user.id}/posts`);
-      const data = await res.json();
+      const response = await fetch(`/api/users/${session?.user.id}/posts`);
+      const data = await response.json();
 
       setPosts(data);
     };
@@ -27,21 +23,21 @@ const MyProfile = () => {
     if (session?.user.id) fetchPosts();
   }, []);
 
+  const handleEdit = (post) => {
+    router.push(`/update-tweet?id=${post._id}`);
+  };
+
   const handleDelete = async (post) => {
-    const hasConfirmed = true;
+    try {
+      await fetch(`/api/tweet/${post._id.toString()}`, {
+        method: "DELETE",
+      });
 
-    if (hasConfirmed) {
-      try {
-        await fetch(`/api/tweet/${post._id.toString()}`, {
-          method: "DELETE",
-        });
+      const filteredPosts = posts.filter((p) => p._id !== post._id);
 
-        const filteredPosts = posts.filter((p) => p._id !== post._id);
-
-        setPosts(filteredPosts);
-      } catch (error) {
-        console.log(error);
-      }
+      setPosts(filteredPosts);
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -49,7 +45,9 @@ const MyProfile = () => {
     <Profile
       name={session?.user.name}
       email={session?.user.email}
+      image={session?.user.image}
       data={posts}
+      handleEdit={handleEdit}
       handleDelete={handleDelete}
     />
   );
