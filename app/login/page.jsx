@@ -1,16 +1,7 @@
 import Image from "next/image";
-import { signIn, useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { signIn } from "next-auth/react";
 
 const Home = () => {
-  const { data: session } = useSession();
-
-  const router = useRouter();
-
-  if (session?.user) {
-    router.push("/");
-  }
-
   return (
     <>
       <nav className="fixed bottom-0 flex items-center justify-around w-full bg-white z-10 dark:bg-[#121212]">
