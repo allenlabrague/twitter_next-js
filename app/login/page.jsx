@@ -2,8 +2,10 @@
 
 import Image from "next/image";
 import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const Home = () => {
+  const router = useRouter();
   return (
     <nav className="fixed bottom-0 flex items-center justify-around w-full bg-white z-10 dark:bg-[#121212]">
       <div className="relative w-full h-screen">
@@ -17,7 +19,7 @@ const Home = () => {
           type="button"
           onClick={() =>
             signIn("google", {
-              callbackUrl: "/https://twitter-next-js-sepia.vercel.app",
+              callbackUrl: router.push("/"),
             })
           }
           className="absolute bottom-24 z-10 left-0 right-0 mx-auto w-[90%] bg-white rounded-xl p-5 flex items-center justify-between shadow-xl dark:bg-[#2C2C2C]"
