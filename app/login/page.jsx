@@ -14,12 +14,11 @@ const Home = () => {
           />
           <button
             type="button"
-            key={provider.name}
             onClick={() => signIn()}
             className="absolute bottom-24 z-10 left-0 right-0 mx-auto w-[90%] bg-white rounded-xl p-5 flex items-center justify-between shadow-xl dark:bg-[#2C2C2C]"
           >
             <h2 className="text-black dark:text-white text-sm">
-              Continue with {provider.name}
+              Continue with Google
             </h2>
             <Image src="/google.svg" width={30} height={30} alt="home-icon" />
           </button>
