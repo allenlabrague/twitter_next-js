@@ -11,6 +11,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { ThemeSwitcher } from "./ThemeSwitcher";
+import { AiOutlineReload } from "react-icons/ai";
 
 const Profile = ({ name, email, image, handleEdit, data, handleDelete }) => {
   return (
@@ -18,7 +19,7 @@ const Profile = ({ name, email, image, handleEdit, data, handleDelete }) => {
       <div className="p-4 bg-white dark:bg-[#121212]">
         <Link href="/" className="flex items-center gap-2">
           <IoChevronBack fontSize={20} />
-          <p className="text-lg">Back</p>
+          <p>Back</p>
         </Link>
       </div>
       <div>
@@ -64,7 +65,7 @@ const Profile = ({ name, email, image, handleEdit, data, handleDelete }) => {
       <div className="flex flex-col-reverse">
         <div className="w-full h-[65px]" />
         {data.length === 0 ? (
-          <p className="text-center mt-5">Create a post</p>
+          <AiOutlineReload className="h-6 w-6 animate-spin mx-auto mt-5" />
         ) : (
           <>
             {data.map((post) => (

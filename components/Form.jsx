@@ -16,10 +16,10 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
         </h1>
         <Link
           href="/"
-          className="flex items-center gap-2 absolute top-5 left-5"
+          className="flex items-center gap-2 absolute top-5 left-5 mt-1"
         >
           <IoChevronBack fontSize={20} />
-          <p className="text-lg">Cancel</p>
+          <p>Cancel</p>
         </Link>
         <div className="mr-3">
           <Image

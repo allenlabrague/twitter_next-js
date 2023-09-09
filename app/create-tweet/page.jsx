@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { useRouter, redirect } from "next/navigation";
 import Form from "@components/Form";
 
 const CreateTweet = () => {
@@ -13,6 +13,10 @@ const CreateTweet = () => {
   const [post, setPost] = useState({
     tweet: "",
   });
+
+  if (!session?.user) {
+    redirect("/");
+  }
 
   const createTweet = async (e) => {
     e.preventDefault();

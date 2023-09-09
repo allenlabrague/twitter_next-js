@@ -1,19 +1,25 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams, redirect } from "next/navigation";
 
 import Form from "@components/Form";
+import { useSession } from "next-auth/react";
 
 const EditPrompt = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const PromptId = searchParams.get("id");
+  const { data: session } = useSession();
 
   const [submitting, setSubmitting] = useState(false);
   const [post, setPost] = useState({
     tweet: "",
   });
+
+  if (!session?.user) {
+    redirect("/");
+  }
 
   useEffect(() => {
     const getPromptDetails = async () => {
