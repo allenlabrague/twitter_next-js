@@ -144,24 +144,6 @@ const TweetCard = ({ post, handleDelete, handleEdit }) => {
               </Dialog>
             </SheetContent>
           </Sheet>
-
-          {/* <Sheet>
-            <SheetTrigger>
-              <button className="xl:bg-transparent focus:outline-none focus:shadow-outline relative top-[0.2rem] ml-[1rem]">
-                <BsThreeDots />
-              </button>
-            </SheetTrigger>
-            <SheetContent
-              side="bottom"
-              className="w-full h-auto dark:bg-[#121212] rounded-t-3xl border-t border-gray-200 dark:border-none"
-            >
-              <SheetHeader>
-                <SheetDescription>
-                  
-                </SheetDescription>
-              </SheetHeader>
-            </SheetContent>
-          </Sheet> */}
         </div>
       )}
     </div>

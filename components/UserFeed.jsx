@@ -1,9 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-
 import UserCard from "./UserCard";
-import { AiOutlineSearch } from "react-icons/ai";
 
 const UserCardList = ({ data }) => {
   return (
@@ -18,7 +16,6 @@ const UserCardList = ({ data }) => {
 
 const UserFeed = () => {
   const [posts, setPosts] = useState([]);
-
   const [searchText, setSearchText] = useState("");
   const [searchTimeout, setSearchTimeout] = useState(null);
   const [searchedResults, setSearchedResults] = useState([]);
